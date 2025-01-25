@@ -18,7 +18,7 @@ nltk.download('wordnet')
 
 def load_data(database_filepath):
     engine = create_engine(f'sqlite:///{database_filepath}')
-    df = pd.read_sql_table("disaster_messages", con=engine)
+    df = pd.read_sql_table("DisasterResponseMessages", con=engine)
     X = df['message']
     Y = df.iloc[:, 4:]
     category_names = Y.columns.tolist()
