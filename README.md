@@ -3,22 +3,22 @@ Udacity Data Scientist Nanodegree Project #2 of 4: Disaster Response Pipeline
 
 Table of Contents:
 
-Libraries
-Project Motivation
-Respository Files
-Running the Code
-Acknowledgements
+1. Libraries
+2. Project Motivation
+3. Respository Files
+4. Running the Code
+5. Acknowledgements
 
 Libraries & Installation
 
 This project uses Python version 3.* and the following libraries:
 
-pandas
-nltk
-sys
-sklearn
-sqlalchemy
-pickle
+* pandas
+* nltk
+* sys
+* sklearn
+* sqlalchemy
+* pickle
 
 
 Project Motivation
