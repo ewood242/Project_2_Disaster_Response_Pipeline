@@ -59,4 +59,5 @@ Within the project's root directory:
 
 
 Acknowledgements
+
 The data used in this project was provided by Figure Eight: https://appen.com/
