@@ -51,6 +51,7 @@ notebooks:
 
 
 Running the Code
+
 Within the project's root directory:
 * To clean and store the data in a database, run the ETL pipeline by copying and pasting the following command into the terminal: python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponseMessages.db
 * To train the classifier and save the resulting model, run the ML pipeline by copying and pasting the following command into the terminal: python models/train_classifier.py data/DisasterResponseMessages.db models/model.pkl
