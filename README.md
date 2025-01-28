@@ -27,18 +27,22 @@ This project was the second of four in the Udacity Data Scientist Nanodegree Pro
 
 
 Repository Files
+
 app:
 * master.html: template for the main page of the web app
 * go.html: template for the classification result page of the web app
 * run.py: Flask template file used to run the web app
+
 data:
 * disaster_messages.csv: messages data
 * disaster_categories.csv: categories data
 * DisasterResponseMessages.db: database to save cleaned and categorized data
 * process_data.py: module used to clean and store the data into a database
+
 models:
 * train_classifier.py: module used to build, fit, evaluate, and save the machine learning model used for classification
 * model.pkl: the model output from train_classifier.py
+
 notebooks:
 * categories.csv: categories data used for the ETL Pipeline Preparation notebook
 * messages.csv: messages data used for the ETL Pipeline Preparation notebook
