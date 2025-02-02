@@ -3,22 +3,22 @@ Udacity Data Scientist Nanodegree Project #2 of 4: Disaster Response Pipeline
 
 Table of Contents:
 
-Libraries
-Project Motivation
-Respository Files
-Running the Code
-Acknowledgements
+1. Libraries
+2. Project Motivation
+3. Respository Files
+4. Running the Code
+5. Acknowledgements
 
 Libraries & Installation
 
 This project uses Python version 3.* and the following libraries:
 
-pandas
-nltk
-sys
-sklearn
-sqlalchemy
-pickle
+* pandas
+* nltk
+* sys
+* sklearn
+* sqlalchemy
+* pickle
 
 
 Project Motivation
@@ -27,18 +27,22 @@ This project was the second of four in the Udacity Data Scientist Nanodegree Pro
 
 
 Repository Files
+
 app:
 * master.html: template for the main page of the web app
 * go.html: template for the classification result page of the web app
 * run.py: Flask template file used to run the web app
+
 data:
 * disaster_messages.csv: messages data
 * disaster_categories.csv: categories data
 * DisasterResponseMessages.db: database to save cleaned and categorized data
 * process_data.py: module used to clean and store the data into a database
+
 models:
 * train_classifier.py: module used to build, fit, evaluate, and save the machine learning model used for classification
 * model.pkl: the model output from train_classifier.py
+
 notebooks:
 * categories.csv: categories data used for the ETL Pipeline Preparation notebook
 * messages.csv: messages data used for the ETL Pipeline Preparation notebook
@@ -47,6 +51,7 @@ notebooks:
 
 
 Running the Code
+
 Within the project's root directory:
 * To clean and store the data in a database, run the ETL pipeline by copying and pasting the following command into the terminal: python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponseMessages.db
 * To train the classifier and save the resulting model, run the ML pipeline by copying and pasting the following command into the terminal: python models/train_classifier.py data/DisasterResponseMessages.db models/model.pkl
@@ -54,4 +59,5 @@ Within the project's root directory:
 
 
 Acknowledgements
+
 The data used in this project was provided by Figure Eight: https://appen.com/
