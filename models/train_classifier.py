@@ -13,6 +13,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
+from sklearn.utils.multiclass import type_of_target
+
 import pickle
 
 def load_data(database_filepath):
@@ -27,12 +29,12 @@ def load_data(database_filepath):
     Y (pandas.DataFrame): contains the target variables
     category_names (list): contains the category names
     """
-    engine = create_engine(f'sqlite:///{database_filepath}')
+    engine = create_engine('sqlite:///' + str(database_filepath))
     df = pd.read_sql_table("DisasterResponseMessages", con=engine)
-    X = df['message']
-    Y = df.drop(['id', 'message', 'original', 'genre'], axis = 1)
-    category_names = Y.columns.tolist()
-    return X,Y,category_names
+    x = df['message']
+    y = df.drop(['id', 'message', 'original', 'genre'], axis = 1)
+    category_names = y.columns.tolist()
+    return x, y, category_names
 
 
 def tokenize(text):
@@ -65,17 +67,17 @@ def build_model():
     ])
             
     parameters = {
-        'clf__estimator__n_estimators' : [0, 200],
+        'clf__estimator__n_estimators': [50, 100, 150, 200],
         'clf__estimator__max_depth': [2, 5, 10],
-        'clf__estimator__subsample': [0.25, 0.5, 0.75, 1]
+        'clf__estimator__subsample': [0.25, 0.5, 0.75, 1],
     }
     
     model = GridSearchCV(pipeline, param_grid=parameters, verbose=3, n_jobs=-1)
     
-    return cv
+    return model
 
 
-def evaluate_model(model, X_test, Y_test, category_names):
+def evaluate_model(model, x_test, y_test, category_names):
     """
     Evaluate model performance.
 
@@ -85,8 +87,8 @@ def evaluate_model(model, X_test, Y_test, category_names):
     Y_test (pandas.DataFrame): target variables for testing
     category_names (list): contains the category names
     """
-    y_pred = model.predict(X_test)
-    class_report = classification_report(Y_test, y_pred, target_names=category_names)
+    y_pred = model.predict(x_test)
+    class_report = classification_report(y_test, y_pred, target_names=category_names)
     print(class_report)
 
 
@@ -108,17 +110,20 @@ def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        X, Y, category_names = load_data(database_filepath)
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+        x, y, category_names = load_data(database_filepath)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
         
         print('Building model...')
         model = build_model()
         
         print('Training model...')
-        model.fit(X_train, Y_train)
+        model.fit(x_train, y_train)
         
+        print(type_of_target(y_train))
+        print(type_of_target(y_test))
+
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+        evaluate_model(model, x_test, y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)

@@ -21,12 +21,13 @@ def clean_data(df):
     df = df.drop('categories', axis = 1)
     df = pd.concat([df, categories], axis=1)
     df = df.drop_duplicates(subset=['message'], keep='first')
+    df.replace(2, 1, inplace=True)
     return df
 
 
 
-def save_data(df, database_filename):
-    engine = create_engine(f'sqlite:///{database_filename}')
+def save_data(df, database_filepath):
+    engine = create_engine(f'sqlite:///{database_filepath}')
     df.to_sql('DisasterResponseMessages', engine, index=False)
 
 
